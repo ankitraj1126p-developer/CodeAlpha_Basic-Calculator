@@ -82,6 +82,7 @@ function calculate() {
 
         
         expression = expression.replace(
+            
             /(\d+(\.\d+)?)%(\d+(\.\d+)?)/g,
             "($1/100)*$3"
         );
@@ -108,46 +109,7 @@ document.addEventListener("keydown", function(event) {
 
     let key = event.key;
 
-    
-    if (!isNaN(key)) {
-
-        appendValue(key);
-    }
-
-    else if (key === "+") {
-
-        appendValue("+");
-    }
-
-    else if (key === "-") {
-
-        appendValue("-");
-    }
-
-    else if (key === "*") {
-
-        appendValue("*");
-    }
-
-    else if (key === "/") {
-
-        appendValue("/");
-    }
-
-    
-    else if (key === ".") {
-        
-        appendValue(".");
-    }
-
-    
-    else if (key === "%") {
-
-        appendValue("%");
-    }
-
-  
-    else if (key === "(" || key === ")") {
+    if ((key >= "0" && key <= "9") || ["+", "-", "*", "/", ".", "%", "(", ")"].includes(key)) {
 
         appendValue(key);
     }
@@ -155,16 +117,10 @@ document.addEventListener("keydown", function(event) {
     
     else if (key === "Enter") {
 
-        calculate();
-    }
-
-    else if (key === "Enter") {
-
-        event.preventDefault();
+        event.preventDefault(); 
 
         calculate();
     }
-
 
     
     else if (key === "Backspace") {
@@ -172,10 +128,9 @@ document.addEventListener("keydown", function(event) {
         deleteLast();
     }
 
-   
+
     else if (key === "Escape") {
 
         clearDisplay();
     }
-
 });
